@@ -1,0 +1,158 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/db19a8a095.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/mainSite/main.css' %}">
+    {% block stylelinks %} {% endblock stylelinks %}
+    <title>{% block title %}{%endblock title%}</title>
+</head>
+<body>
+    <div class="overlay" id="overlay"></div>
+    <section class="header-main">
+       <header class="container">
+            <nav>
+                <div class="logo" onclick="window.location.href='/'">
+                    <img src="{% static 'images/homePage/logo.jfif' %}" alt="" srcset="">
+                <h1>Dorgam</h1>
+                </div>
+
+                <div class="nav-links">
+                    <ul>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'products' %}">Shop</a></li>
+                        <li><a href="{% url 'services' %}">Services</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'contactUs' %}">contact Us</a></li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="nav-action">
+                <div class="account">
+                    <a href="{% url 'signUp' %}"><i class="fa-regular fa-user"></i></a>
+                </div>
+
+                <div class="cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="itemsNum"><p>12</p></div>
+                </div>
+                <div class="handbugger">
+                    <i class="fa-solid fa-bars" onclick="openNav()"></i>
+                </div>
+            </div>
+       </header>
+    
+       <div class="sidenav">
+            <div class="sidenav-heading">
+                <div class="logo">
+                    <h1> Dorgam </h1>
+                </div>
+
+                <div class="close-menu" onclick="closeNav()">
+                    <i class="fa-solid fa-x"></i>
+                </div>
+            </div>
+
+            <div class="links">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'products' %}">Shop</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'contactUs' %}">contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="contact-info">
+                <h1>Contact Info</h1>
+
+                <div class="addresss">
+                    <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <p class="info">{{ contact.address }}</p>
+                </div>
+
+                <div class="phoneNumber">
+                    <div class="icon"><i class="fa-solid fa-phone"></i></div>
+                    <p class="info">{{ contact.phoneNumber }}</p>
+                </div>
+
+                <div class="email">
+                    <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                    <p class="info">{{ contact.email }}</p>
+                </div>
+            </div>
+       </div>
+    </section>
+     <!-- include flash flashMessages -->
+     {% include 'flashMessages/message.html' %}
+
+    {% block content %} {% endblock content %}
+
+
+    <footer>
+        <div class="footer-container container">
+            <div class="footer-about">
+                <div class="heading">
+                    <div class="logo"><img src="{% static 'images/homePage/logo.jfif' %}" alt="" srcset=""></div>
+                    <h1>Dorgam Integrated</h1>
+                </div>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam provident,  
+                    nostrum saepe nulla quae quam inventore deleniti magnam fugit! Similique!
+                </p>
+
+                <div class="socials">
+                   <a href="#"> <i href="shdyey" class="fa-brands fa-facebook"></i></a>
+                   <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                   <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                   <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-services">
+                <h1> services</h1>
+                <a href="#"><i class="fa-solid fa-angle-right"></i>cleaning</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i>cleaning</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i>cleaning</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i>cleaning</a>
+            </div>
+
+            <div class="footer-links">
+                <h1> Site Map </h1>
+                <ul>
+                    <li><i class="fa-solid fa-angle-right"></i><a href="#">Home</a></li>
+                    <li><i class="fa-solid fa-angle-right"></i><a href="{% url 'services' %}">services</a></li>
+                    <li><i class="fa-solid fa-angle-right"></i><a href="#">Home</a></li>
+                    <li><i class="fa-solid fa-angle-right"></i><a href="#">Home</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact-info">
+                <h1> Contact </h1>
+                <p>We are one phone call/Email away......</p>
+                    <div class="info">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>{{ contact.phoneNumber }}</p>
+                    </div>
+
+                    <div class="info">
+                        <i class="fa-solid fa-envelope"></i>
+                        <p>{{ contact.email }}</p>
+                    </div>
+            </div>
+        </div>
+
+        <div class="copyright container">
+            <hr style="color: grey;">
+            <p>&copy;All rights reserved</p>
+        </div>
+
+    </footer>
+    
+    <script src="{% static 'javascript/mainSite/main.js' %}"></script>
+    {% block jsLinks %} {% endblock %}
+</body>
+</html>

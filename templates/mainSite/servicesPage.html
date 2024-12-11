@@ -1,0 +1,73 @@
+
+{% extends "./main.html" %}
+{% load static %}
+
+{% block stylelinks %}
+    <link rel="stylesheet" href="{% static 'css/mainSite/servicesPage.css' %}">
+{% endblock stylelinks %}
+
+{% block title %} services {% endblock title %}
+
+<!---==========================hero section ===========================-->
+{% block content %}
+    
+        <div class="info-slide">
+            <p> tap <a href="tel:{{contact.phoneNumber}}">{{ contact.phoneNumber }}</a>  or  
+                <a href="mailto:{{ contact.email }}">{{ contact.email }}</a> to contact us 
+                and Experience Excellence with Our Top-Notch Services. 
+            </p>
+        </div>
+        
+        <form action="{% url 'services' %}" method="get" class="search-container container">
+            <input type="search" name="q" class="search-input" placeholder="Search..." value="{{ request.GET.q }}">
+            <button class="search-button">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+        {% if services %}
+        <div class="service-featured container">
+            <div class="card-wrapper">
+                <ul class="card-list">
+                    
+                    {% for service in services %}
+                        <li class="card-items">
+                            <a href="#" class="card-link">
+                                <img src="{{ service.image.url}}" alt="" class="card-image">
+                                <p class="badge">book service</p>
+                                <h2 class="card-title">{{ service.name_of_service }}</h2>
+                                <div class="card-btn">
+                                    <button class="card-button fa-solid fa-arrow-right"></button>
+                                    <button class="badge bookbtn" onclick="window.location.href='/bookService'">book service </button>
+                                </div>
+                            </a>
+                        </li>
+                    {% endfor %}
+                        
+                </ul>
+        
+            </div>
+        </div>
+    {% else %}
+        
+        {% if search_query %}
+            <div class="search-not-found">
+                <p>
+                    service for the above search "{{ search_query }}"" not found
+                </p>
+            </div>
+        {% else %}
+        <div class="search-not-found">
+            <p>
+                No services available at the moment. Please check back later!
+            </p>
+        </div>
+        {% endif %}
+    
+    {% endif %}
+    
+
+    {% block jsLinks %}
+    {% endblock %}
+
+
+{% endblock %}

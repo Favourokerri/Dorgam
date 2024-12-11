@@ -1,0 +1,115 @@
+.signup-container {
+    margin-top: 180px;
+    border: 1px solid black;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    box-shadow: 20px -20px orange;
+    margin-bottom: 40px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.signup-info {
+    width: 45%;
+}
+
+.signup-info h1 {
+    font-family: cursive;
+}
+
+.signup-info p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.form-error {
+    display: none;
+    color: orange;
+}
+
+.signup-info form input {
+    height: 35px;
+    width: 90%;
+    border: 2px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.signup-info form textarea {
+    width: 90%;
+    border: 2px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.signup-info form input:focus {
+    border: 2px solid orange;
+}
+
+.signup-image {
+    width: 45%;
+}
+
+.signup-image img {
+    width: 90%;
+    animation: upAndDown 2s infinite ease-in-out;
+}
+
+.signup-info button {
+    width: 90%;
+    padding: 15px;
+    background-color: orange;
+    color: black;
+    font-size: 20px;
+}
+
+.form-link {
+    margin-top: 10px;
+}
+
+.form-link a {
+    color: orange;
+}
+
+@keyframes upAndDown {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@media (max-width: 780px) {
+    .signup-container {
+        margin-top: 120px;
+        flex-direction: column;
+        width: 90%;
+        padding: 10px;
+        box-shadow: 10px -10px orange;
+    }
+
+    .signup-info {
+        width: 100%;
+    }
+
+    .signup-image {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .signup-info form input,
+    textarea {
+        width: 100%;
+    }
+}

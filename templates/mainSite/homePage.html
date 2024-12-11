@@ -1,0 +1,174 @@
+{% extends "./main.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block stylelinks %}
+                            <!--=========swiper css =======-->
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{% static 'css/mainSite/homePage.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mainSite/shopPage.css' %}">
+{% endblock stylelinks %}
+
+{% block title %} home {% endblock title %}
+
+<!---==========================hero section ===========================-->
+{% block content %}
+    <section style="background-color: rgb(235, 233, 231)">
+        <div class="hero-section container">
+            <div class="hero-text">
+                <h2 class="heading">Dorgam Integrated....</h2>
+                <h1 class="title">{{ heroContent.title }}</h1>
+                <p class="text">
+                    {{heroContent.description}}
+                </p>
+    
+                <a href="#" class="SignUp">SignUp <i class="fa-solid fa-chevron-right"></i></a>
+                <a href="#" class="store">View Store</a>
+            </div>
+    
+            <div class="hero-image">
+                <img src="{% static 'images/homePage/heroimg1.jfif' %}" alt="" id="hero-image">
+            </div>
+        </div>
+    </section>
+
+
+    <!--===================================assurance section ========================-->
+    <div class="assurance container">
+        <div class="box">
+            <div class="icon"><i class="fa-solid fa-shuttle-space"></i></div>
+            <div class="text">
+                <h1>Fast Delivery</h1>
+                <p>We deliver very fast</p>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="icon"><i class="fa-solid fa-money-bill"></i></div>
+            <div class="text">
+                <h1>Money Return</h1>
+                <p>garanteed under 7 days</p>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="icon"><i class="fa-solid fa-headset"></i></div>
+            <div class="text">
+                <h1>Online support 24/7</h1>
+                <p>Online support 24/7 per day</p>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="icon"><i class="fa-solid fa-globe"></i></div>
+            <div class="text">
+                <h1>Reliable</h1>
+                <p>Trusted by 1000+ brands</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!--================================services slider ====================-->
+    
+    {% if services %}
+        <div class="heading container">
+            <p>Top Notch</p>
+            <h1 > Our Services</h1>
+        </div>
+    <div class="service-featured container swiper">
+        <div class="card-wrapper">
+            <ul class="card-list swiper-wrapper">
+                
+                {% for service in services  %}
+                <li class="card-items swiper-slide">
+                    <a href="#" class="card-link">
+                        <img src="{{ service.image.url }}" alt="" class="card-image">
+                        <p class="badge">we offer the best</p>
+                        <h2 class="card-title">{{ service.name_of_service }}</h2>
+                        <button class="card-button fa-solid fa-arrow-right"></button>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <div class="swiper-pagination"></div>
+            <!-- navigation buttons -->
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+
+        <div class="featured-service-btn">
+            <a href="{% url 'services' %}"> View all services</a>
+        </div>
+
+        <div class="featured-service-btn">
+            <a href="{% url 'services' %}"> Book A service </a>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if featured_products %}
+        <div class="heading container">
+            <p>Super Durable</p>
+            <h1 > Featured Products</h1>
+        </div>
+        <div class="products-container container">
+            
+            {% for product in featured_products %}
+                <div class="product" onclick="window.location.href='/store/product/{{ product.id }}/'">
+                    <div class="product-image">
+                        <img src="{{ product.image.url }}" alt="" srcset="">
+                    </div>
+                    <div class="action">
+                        <button class="addToCart"><i class="fa-solid fa-bag-shopping"></i>add to cart</button>
+                    </div>
+
+                    <div class="product-info">
+                        {% for category in product.categories.all %}
+                            <p class="category">{{ category }}</p>
+                        {% endfor %}
+                        <h1> {{ product.name }}</h1>
+
+                        {% for category in product.categories.all %}
+                            {% if category.name|upper == "INTERLOCK" %}
+                                <p class="price">N{{ product.price|intcomma }} per square meter</p>
+                            {% else %}
+                                <p class="price">N{{ product.price|intcomma }} per unit</p>
+                            {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+                
+            
+        </div>
+    {% endif %}
+
+    {% block jsLinks %}
+                    <!-- swiper js-->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <script src="{% static 'javascript/mainSite/homePage.js' %}"></script> 
+    {% endblock %}
+
+
+    <!-- =using inline js because django wont be able to convert the urls in a separate file =-->
+    <script>
+        let heroImages = [
+            "{% static 'images/homePage/heroimg1.jfif' %}",
+            "{% static 'images/homePage/heroimg2.jfif' %}",
+            "{% static 'images/homePage/heroimg3.jfif' %}",
+            "{% static 'images/homePage/heroimg4.jfif' %}",
+            "{% static 'images/homePage/heroimg5.jfif' %}",
+            "{% static 'images/homePage/heroimg7.jfif' %}"
+        ];
+    
+        let currentIndex = 0;
+        let heroImageElement = document.getElementById("hero-image");
+    
+        setInterval(() => {
+            heroImageElement.src = heroImages[currentIndex];
+            currentIndex = (currentIndex + 1) % heroImages.length;
+        }, 3000);
+    </script>
+{% endblock %}

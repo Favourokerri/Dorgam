@@ -1,0 +1,46 @@
+{% extends "./main.html" %}
+{% load static %}
+
+{% block stylelinks %}
+    <link rel="stylesheet" href="{% static 'css/mainSite/aboutPage.css' %}">
+{% endblock stylelinks %}
+
+{% block title %} about {% endblock title %}
+
+<!---==========================About pagesection ===========================-->
+{% block content %}
+   
+    <section>
+        <div class="about-image">
+            <div class="links">
+                <h1> About Us </h1>
+                <a href="#">Home</a>
+            </div>
+        </div>
+
+        <div class="about-content container">
+            <div class="about-text">
+                <h3>Dorgam Integrated</h3>
+                <h1>Our Core Divisions</h1>
+
+                <p> {{about.about |safe}}</p>
+
+            
+            </div>
+
+            <div class="aboutPic">
+                <img src="{% static 'images/aboutPage/about1.svg' %}" alt="" srcset="">
+
+                <div class="about-action">
+                    <a href="#">Contact Us</a>
+                    <a href="#">Go to home Page</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% block jsLinks %} 
+        <script src="{% static 'javascript/mainSite/homePage.js' %}"></script> 
+    {% endblock %}
+
+{% endblock %}

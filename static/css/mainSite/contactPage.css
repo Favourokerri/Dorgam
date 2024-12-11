@@ -1,0 +1,106 @@
+.contact-container {
+    margin-top: 180px;
+    border: 1px solid black;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    box-shadow: 20px -20px orange;
+    margin-bottom: 40px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.contact-info {
+    width: 45%;
+}
+
+.contact-info h1 {
+    font-family: cursive;
+}
+
+.contact-info p {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.contact-info p .contact {
+    color: orange;
+}
+
+.contact-info form input {
+    height: 35px;
+    width: 90%;
+    border: 2px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.contact-info form textarea {
+    width: 90%;
+    border: 2px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.contact-info form input:focus {
+    border: 2px solid orange;
+}
+
+.contact-image {
+    width: 45%;
+}
+
+.contact-image img {
+    width: 90%;
+    animation: upAndDown 2s infinite ease-in-out;
+}
+
+.contact-info button {
+    width: 90%;
+    padding: 15px;
+    background-color: orange;
+    color: black;
+    font-size: 20px;
+}
+
+@keyframes upAndDown {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@media (max-width: 780px) {
+    .contact-container {
+        margin-top: 120px;
+        flex-direction: column;
+        width: 90%;
+        padding: 10px;
+        box-shadow: 10px -10px orange;
+    }
+
+    .contact-info {
+        width: 100%;
+    }
+
+    .contact-image {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .contact-info form input,
+    textarea {
+        width: 100%;
+    }
+}

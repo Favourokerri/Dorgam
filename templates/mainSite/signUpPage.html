@@ -1,0 +1,64 @@
+
+{% extends "./main.html" %}
+{% load static %}
+
+{% block stylelinks %}
+    <link rel="stylesheet" href="{% static 'css/mainSite/signUpPage.css' %}">
+{% endblock stylelinks %}
+
+{% block title %} contact us {% endblock title %}
+
+{% block content %}
+    <div class="signup-container container">
+        <div class="signup-info">
+            <h1>SIGN UP</h1>
+            <p>
+                Create an account to enjoy our services. 
+            </p>
+
+            <form action="{% url 'signUp' %}" method="post" id="signUpForm">
+                {% csrf_token %}
+                <div>
+                    <label for="name">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+
+                <div>
+                    <label for="name">Last Name</label>
+                    <input type="text" id="Lastname" name="LastName" required>
+                </div>
+
+                <div>
+                    <label for="email">Email Address</label>
+                    <input type="email" required id="email" name="email">
+                </div>
+
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <p class="form-error" id="password-form-error" style="font-size: 16px;"> password must be greater than 8</p>
+                </div>
+
+                <div>
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm_password" required>
+                    <p class="form-error" id="ConfirmPassword-form-error" style="font-size: 16px;"> password and confirm password do not match</p>
+                </div>
+
+                <button type="submit">Sign Up</button>
+                <p class="form-link"> alredy have an account? <a href="{% url 'login' %}">logIn</a></p>
+
+            </form>
+        </div>
+
+        <div class="signup-image">
+            <img src="{% static 'images/contactPage/supports.png' %}" alt="">
+        </div>
+    </div>
+
+    {% block jsLinks %}
+       <script src="{% static 'javascript/mainSite/authentication.js' %}"></script>
+    {% endblock %}
+
+
+{% endblock %}

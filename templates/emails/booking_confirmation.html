@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #5f9ea0;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Booking Confirmation</h1>
+        <p>Dear {{ full_name }},</p>
+        <p>Thank you for booking with us! We’re excited to assist you and ensure your needs are met with our exceptional service.</p>
+        
+        <p>Here are the details of your booking:</p>
+        <ul>
+            <li><strong>Service:</strong> {{ service_name }}</li>
+            <li><strong>Preferred Contact Method:</strong> {{ preferred_contact_method }}</li>
+            <li><strong>Best Time to Contact:</strong> {{ time_to_contact }}</li>
+        </ul>
+        
+        <p>We will reach out to you shortly via your preferred contact 
+            method at the best time indicated. Our team is committed to delivering the highest 
+            level of service and ensuring your satisfaction at every step.
+        </p>
+        
+        <p>If you have any immediate questions or need further assistance, feel free to reply to this email</p>
+        
+        <p>Thank you for choosing Dorgam Integrated. We look forward to exceeding your expectations!</p>
+        
+        <p>Best regards,</p>
+        <p><strong>The Dorgam Integrated Team</strong></p>
+        
+        <div class="footer">© 2024 Dorgam Integrated. All rights reserved.
+            <p>
+                If you wish to unsubscribe from our emails, click 
+                <a href="{{ unsubscribe_url }}" style="color: #5f9ea0; text-decoration: none;">unsubscribe</a>.
+            </p>
+        </div>
+        
+    </div>
+    
+</body>
+</html>

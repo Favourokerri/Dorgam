@@ -1,0 +1,492 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidde
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 980;
+    display: none;
+}
+
+.container {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header-main {
+    background-color: white;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 40px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.logo img {
+    width: 50px;
+}
+
+.nav-links ul {
+    list-style: none;
+}
+
+.nav-links ul li {
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.nav-links ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+    transition: 0.5s ease;
+}
+
+.nav-links ul li a:hover {
+    color: rgb(166, 125, 73);
+}
+
+
+.nav-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-action .account a {
+    color: black;
+}
+
+.nav-action .account {
+    font-size: 25px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.nav-action .cart {
+    position: relative;
+    cursor: pointer;
+}
+
+.nav-action .cart i {
+    font-size: 25px;
+}
+
+.nav-action .cart .itemsNum {
+    position: absolute;
+    top: -20px;
+    left: 10px;
+    padding: 8px;
+    font-size: 10px;
+    background-color: rgb(166, 125, 73);
+    border-radius: 50px;
+}
+
+.nav-action .cart .itemsNum p {
+    margin-right: 0px;
+    color: white;
+}
+
+.nav-action .handbugger {
+    font-size: 25px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.sidenav {
+    height: 100vh;
+    position: fixed;
+    background-color: black;
+    top: 0px;
+    width: 400px;
+    right: -420px;
+    border-left: 4px solid rgb(166, 125, 73);
+    transition: 1s ease;
+    padding: 20px;
+    z-index: 1000;
+}
+
+.sidenav .sidenav-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid rgb(24, 21, 21);
+}
+
+.sidenav .logo {
+    color: white;
+    font-size: 20px;
+}
+
+.sidenav .close-menu {
+    color: white;
+    background-color: rgb(166, 125, 73);
+    padding: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+}
+
+.sidenav .links {
+    display: none;
+}
+
+.sidenav .links ul {
+    list-style: none;
+}
+
+.sidenav .links ul li {
+    padding: 10px;
+    border-bottom: 1px solid rgb(24, 21, 21);
+}
+
+.sidenav .links ul li a {
+    text-decoration: none;
+    color: white;
+}
+
+.sidenav .links ul li a:hover {
+    color: rgb(166, 125, 73);
+}
+
+.sidenav .contact-info {
+    width: 90%;
+}
+
+.sidenav .contact-info h1 {
+    color: white;
+    margin-top: 50px;
+}
+
+.sidenav .contact-info .addresss {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.sidenav .contact-info .icon {
+    padding: 10px;
+    height: 45px;
+    width: 45px;
+    font-size: 18px;
+    border-radius: 50%;
+    width: 10%;
+}
+
+.sidenav .contact-info .icon:hover {
+    color: rgb(166, 125, 73);
+}
+
+.sidenav .contact-info .info {
+    width: 85%;
+    cursor: pointer;
+}
+
+.sidenav .contact-info .info:hover {
+    width: 85%;
+    cursor: pointer;
+    color: rgb(166, 125, 73);
+}
+
+.sidenav .contact-info .phoneNumber {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.sidenav .contact-info .email {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+
+footer {
+    background-color: black;
+    color: white;
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-about {
+    width: 40%;
+}
+
+.footer-about .heading * {
+    margin-right: 4px;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.footer-about .heading {
+    display: flex;
+}
+
+.footer-about p {
+    color: gray;
+    font-size: 22px;
+}
+
+.footer-about .socials {
+    margin-top: 20px;
+}
+
+.footer-about .socials a {
+    display: inline-block;
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+    font-size: 25px;
+}
+
+.footer-about .socials a:hover {
+    color: rgb(166, 125, 73);
+}
+
+
+.footer-about .heading .logo img {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.footer-services {
+    width: 23%;
+}
+
+.footer-services a {
+    display: block;
+    color: gray;
+    text-decoration: none;
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 22px;
+    overflow: hidden;
+}
+
+.footer-services a i {
+    margin-right: 10px;
+    margin-left: -20px;
+    transition: 1s ease;
+}
+
+.footer-services a:hover i {
+    margin-left: 10px;
+    display: inline-block;
+    color: white;
+}
+
+.footer-links {
+    width: 23%;
+}
+
+.footer-links ul {
+    list-style: none;
+    overflow: hidden;
+}
+
+.footer-links ul li {
+    padding: 5px;
+    margin-top: 10px;
+}
+
+.footer-links a {
+    color: gray;
+    text-decoration: none;
+    font-size: 22px;
+    overflow: hidden;
+}
+
+.footer-links ul li i {
+    margin-right: 7px;
+    margin-left: -20px;
+    transition: 1s ease;
+}
+
+.footer-links ul li:hover i {
+    margin-left: 0px;
+}
+
+.footer-contact-info {
+    width: 29%;
+    word-wrap: break-word;
+}
+
+.footer-contact-info p {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: gray;
+    margin-top: 15px;
+}
+
+.footer-contact-info .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.footer-contact-info .info i {
+    width: 10%;
+    font-size: 20px;
+    color: rgb(166, 125, 73);
+}
+
+.footer-contact-info .info p {
+    width: 80%;
+    font-size: 20px;
+    color: gray;
+}
+
+footer .copyright {
+    margin-top: 80px;
+    color: white;
+    text-align: center;
+}
+
+footer .copyright hr {
+    color: gray;
+}
+
+footer .copyright p {
+    font-size: 22px;
+}
+
+@media (max-width: 780px) {
+
+    .nav-links {
+        display: none;
+    }
+
+    .sidenav {
+        top: 0px;
+        width: 350px;
+    }
+
+    .sidenav .links {
+        display: block;
+    }
+
+    .footer-container {
+        flex-direction: column;
+    }
+
+    .footer-about .heading * {
+        margin-bottom: 5px;
+    }
+
+    .footer-about {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footer-about h1 {
+        font-size: 25px;
+    }
+
+    .footer-about p {
+        font-size: 18px;
+    }
+
+    .footer-services {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footer-services h1 {
+        font-size: 30px;
+    }
+
+    .footer-services a {
+        font-size: 18px;
+        margin-left: 10px;
+    }
+
+    .footer-links {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footer-links a {
+        font-size: 18px;
+        margin-left: 10px;
+    }
+
+    .footer-links h1 {
+        font-size: 25px;
+    }
+
+    .footer-contact-info {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .footer-contact-info h1 {
+        font-size: 25px;
+    }
+
+    .footer-contact-info p {
+        font-size: 18px;
+    }
+
+    footer .copyright {
+        margin-top: 20px;
+    }
+
+    footer .copyright p {
+        font-size: 18px;
+    }
+
+
+}

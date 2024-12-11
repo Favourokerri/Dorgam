@@ -1,0 +1,244 @@
+.info-slide {
+    margin-top: 100px;
+    position: fixed;
+    top: -10px;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(166, 125, 73);
+    z-index: 900;
+}
+
+.info-slide p {
+    color: white;
+    font-size: 20px;
+    white-space: nowrap;
+    display: inline-block;
+    width: 100%;
+    animation: slideInfo 30s linear infinite;
+}
+
+.info-slide p a {
+    text-decoration: underline;
+    color: white;
+    font-size: 18px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 600px;
+    width: 90%;
+
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    padding: 5px 15px;
+    margin-top: 160px;
+    position: fixed;
+    top: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 900;
+}
+
+/* Search input field */
+.search-input {
+    width: 100%;
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+/* Search button */
+.search-button {
+    position: absolute;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.search-button i {
+    font-size: 20px;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.search-button:hover i {
+    color: #007BFF;
+    /* Blue color on hover */
+}
+
+
+.service-featured {
+    margin-top: 190px;
+}
+
+.service-featured .card-wrapper {
+    padding: 30px;
+}
+
+.card-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.service-featured .card-items {
+    list-style: none;
+    margin-bottom: 20px;
+    width: 23%;
+}
+
+.service-featured .card-list .card-items .card-link {
+    user-select: none;
+    display: block;
+    background-color: rgb(234, 222, 207);
+    padding: 15px;
+    border-radius: 12px;
+    text-decoration: none;
+    box-shadow: 0px 10px 10px rgb(0, 0, 0, 0.05);
+    border: 2px solid transparent;
+    transition: 0.5s ease;
+}
+
+.service-featured .card-list .card-items .card-link:hover {
+    border-color: rgb(166, 125, 73);
+}
+
+
+
+.service-featured .card-link .card-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.service-featured .card-link .badge {
+    color: white;
+    background-color: rgb(166, 125, 73);
+    margin: 16px 0 18px;
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    width: fit-content;
+    border-radius: 50px;
+}
+
+.service-featured .card-link .card-title {
+    font-size: 1.19rem;
+    color: black;
+    font-weight: 600;
+}
+
+.service-featured .card-link .card-button {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    border: 2px solid rgb(166, 125, 73);
+    transform: rotate(-45deg);
+}
+
+.card-items .card-link .card-btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-items .card-link .card-btn .bookbtn {
+    border: none;
+    display: inline-block;
+    background-color: #888;
+    cursor: pointer;
+}
+
+.service-featured .card-list .card-items .card-link:hover .card-button {
+    background-color: rgb(166, 125, 73);
+    color: white;
+}
+
+.service-featured .card-wrapper .swiper-button-prev {
+    background-color: white;
+    padding: 20px;
+    border-radius: 50%;
+    font-size: 20px;
+    /* Adjust the arrow icon size */
+    width: 10px;
+    /* Adjust the button width */
+    height: 10px;
+}
+
+/* Target the navigation buttons */
+.service-featured .swiper-button-prev,
+.service-featured .swiper-button-next {
+    background-color: white;
+    padding: 20px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+/* Target the arrow icons inside the buttons */
+.service-featured .swiper-button-prev::after,
+.service-featured .swiper-button-next::after {
+    font-size: 20px;
+    color: rgb(166, 125, 73);
+}
+
+.search-not-found {
+    background-image: linear-gradient(to bottom, rgba(9, 8, 8, 0.5), rgba(7, 7, 7, 0.5)), url("../mainSite/notfound3.gif");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-align: center;
+    color: white;
+    padding-top: 400px;
+}
+
+.search-not-found p {
+    font-size: 25px;
+}
+
+/* Sliding animation */
+@keyframes slideInfo {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+/* Media query for small screens, like tablets and mobile */
+@media (max-width: 768px) {
+    .service-featured .card-items {
+        width: 48%;
+    }
+}
+
+/* Media query for extra small screens (mobile devices) */
+@media (max-width: 480px) {
+    .service-featured .card-items {
+        width: 100%;
+    }
+
+    .info-slide p {
+        animation: slideInfo 15s linear infinite;
+    }
+
+    .search-not-found {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+
+}

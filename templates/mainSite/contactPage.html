@@ -1,0 +1,52 @@
+
+{% extends "./main.html" %}
+{% load static %}
+
+{% block stylelinks %}
+    <link rel="stylesheet" href="{% static 'css/mainSite/contactPage.css' %}">
+{% endblock stylelinks %}
+
+{% block title %} contact us {% endblock title %}
+
+<!---==========================hero section ===========================-->
+{% block content %}
+    <div class="contact-container container">
+        <div class="contact-info">
+            <h1>CONTACT US</h1>
+            <p>
+                Or reach out manually at 
+                <a href="mailto:{{ contact.email }}" class="contact">{{ contact.email }}</a> 
+                or 
+                <a href="tel:{{ contact.phoneNumber }}" class="contact">{{ contact.phoneNumber }}</a>.
+            </p>
+
+            <form action="{% url 'contactUs' %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <label for="email">Email address</label>
+                    <input type="email" required id="email" name="email">
+                </div>
+
+                <div>
+                    <label for="name">Your name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div>
+                    <label for="message">Your message</label>
+                    <textarea name="message" id="message" rows="7"></textarea>
+                </div>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+
+        <div class="contact-image">
+            <img src="{% static 'images/contactPage/supports.png' %}" alt="">
+        </div>
+    </div>
+    {% block jsLinks %}
+    {% endblock %}
+
+
+{% endblock %}

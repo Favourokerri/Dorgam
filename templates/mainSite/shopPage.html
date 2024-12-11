@@ -1,0 +1,104 @@
+
+{% extends "./main.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block stylelinks %}
+    <link rel="stylesheet" href="{% static 'css/mainSite/shopPage.css' %}">
+{% endblock stylelinks %}
+
+{% block title %} shop {% endblock title %}
+
+<!---==========================hero section ===========================-->
+{% block content %}
+    
+        <div class="shop-image">
+            <div class="text">
+                <h1> Products </h1>
+                <a> Home </a>
+            </div>
+        </div>
+
+        <div class="products-nav container">
+            <p>Products Catalogue</p>
+            
+            <form action="{% url 'products' %}"  method="get" class="search-container">
+                {% csrf_token %}
+                <input type="search" name="q" class="search-input" placeholder="Search..." value="{{ request.GET.q }}">
+                <button class="search-button">
+                    
+                </button>
+            </form>
+
+            <div class="filter">
+                <form method="GET" action="{% url 'products' %}">
+                    <select id="category" name="category" onchange="this.form.submit()">
+                        <option value="all" {% if request.GET.category == 'all' %}selected{% endif %}>All</option>
+                        
+                        {% for category in categories %}
+                            <option value="{{ category.id }}" 
+                                {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}
+                            >
+                                {{ category.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+            
+        </div>
+
+        
+        {% if products %}
+            <div class="products-container container">
+                
+                {% for product in products %}
+                    <div class="product" onclick="window.location.href='/store/product/{{ product.id }}/'">
+                        <div class="product-image">
+                            <img src="{{ product.image.url }}" alt="" srcset="">
+                        </div>
+                        <div class="action">
+                            <button class="addToCart" ><i class="fa-solid fa-bag-shopping" ></i>add to cart</button>
+                        </div>
+        
+                        <div class="product-info">
+                            {% for category in product.categories.all %}
+                                <p class="category">{{ category }}</p>
+                            {% endfor %}
+                            <h1> {{ product.name }}</h1>
+
+                            {% for category in product.categories.all %}
+                                {% if category.name|upper == "INTERLOCK" %}
+                                    <p class="price">N{{ product.price|intcomma }} per square meter</p>
+                                {% else %}
+                                    <p class="price">N{{ product.price|intcomma }} per unit</p>
+                                {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+                    
+                
+            </div>
+        {% else %}
+            {% if search_query %}
+                <div class="search-not-found">
+                    <p>
+                        Products for the above search "{{ search_query }}"" not found
+                    </p>
+                </div>
+            {% else %}
+                <div class="search-not-found">
+                    <p>
+                        No Products available at the moment. Please check back later!
+                    </p>
+                </div>
+            {% endif %}
+        {% endif %}
+
+
+    {% block jsLinks %}
+    {% endblock %}
+
+
+{% endblock %}intcomma

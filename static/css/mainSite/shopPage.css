@@ -1,0 +1,242 @@
+.shop-image {
+    height: 400px;
+    background-image: linear-gradient(to bottom, rgba(9, 8, 8, 0.5), rgba(7, 7, 7, 0.5)), url("./b1.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shop-image h1 {
+    color: white;
+    font-size: 50px;
+}
+
+.shop-image a {
+    display: block;
+    color: white;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+}
+
+.products-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    position: sticky;
+    top: 90px;
+    padding: 10px;
+    z-index: 800;
+    background-color: white;
+
+}
+
+.products-nav p {
+    width: 20%;
+    font-size: 30px;
+}
+
+.products-nav form {
+    width: 40%;
+}
+
+.products-nav .filter {
+    width: 20%;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    width: 100%;
+    border-radius: 50px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    padding: 5px 15px;
+}
+
+/* Search input field */
+.search-input {
+    width: 100%;
+    padding: 5px 15px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+/* Search button */
+.search-button {
+    position: absolute;
+    right: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.search-button i {
+    font-size: 20px;
+    color: #888;
+    transition: color 0.3s ease;
+}
+
+.search-button:hover i {
+    color: #007BFF;
+    /* Blue color on hover */
+}
+
+.filter select {
+    padding: 5px;
+    width: 100px;
+}
+
+.products-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    cursor: pointer;
+    flex-wrap: wrap;
+}
+
+.product {
+    width: 20%;
+    position: relative;
+    padding: 6px;
+}
+
+.product-image {
+    width: 100%;
+    height: 250px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 250px;
+}
+
+.action {
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 90%;
+    display: none;
+    bottom: 120px;
+    position: absolute;
+    background-color: white;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.product:hover .action {
+    display: block;
+}
+
+.addToCart {
+    width: 100%;
+    background-color: rgb(166, 125, 73);
+    color: white;
+    border: none;
+    padding: 10px;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    font-size: 16px;
+}
+
+.addToCart i {
+    margin-right: 10px;
+}
+
+.product-info {
+    height: 105px;
+    overflow: hidden;
+}
+
+
+.product-info .category {
+    color: rgb(166, 125, 73);
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.product-info .price {
+    color: rgb(166, 125, 73);
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.search-not-found {
+    background-image: linear-gradient(to bottom, rgba(9, 8, 8, 0.5), rgba(7, 7, 7, 0.5)), url("../mainSite/notfound3.gif");
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    text-align: center;
+    color: white;
+    padding-top: 400px;
+}
+
+.search-not-found p {
+    font-size: 25px;
+}
+
+@media (max-width: 780px) {
+
+    .products-nav p {
+        display: none;
+    }
+
+    .filterNone {
+        display: none;
+    }
+
+    .products-nav .search-container {
+        width: 90%;
+        margin-right: 10px;
+    }
+
+    .products-nav .filter {
+        width: 50%;
+    }
+
+    .products-container {
+        justify-content: space-between;
+        gap: 0;
+        /* Ensure proper spacing between items */
+    }
+
+    .product {
+        width: 50%;
+        /* Two products per row */
+    }
+
+    .product-info .category {
+        font-size: 15px;
+    }
+
+    .product-info h1 {
+        font-size: 18px;
+    }
+
+    .product .price {
+        font-size: 16px;
+    }
+
+    .action {
+        display: block;
+    }
+
+    .search-not-found {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
