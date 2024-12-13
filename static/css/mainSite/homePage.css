@@ -247,6 +247,22 @@
     color: white;
 }
 
+.product-btn {
+    background-color: rgb(166, 125, 73);
+    width: 200px;
+    padding: 15px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: white;
+    border-radius: 6px;
+}
+
+.product-btn a {
+    text-decoration: none;
+    color: white;
+}
 
 /* Define the slide-in animation */
 @keyframes slideIn {

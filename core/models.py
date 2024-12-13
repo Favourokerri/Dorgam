@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django_ckeditor_5.fields import CKEditor5Field
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -7,6 +8,14 @@ from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.conf import settings
 # Create your models here.
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    state = models.CharField(max_length=100, null=True, blank=True)
+    address = models.TextField(null=True, blank=True)
+    phone_number = models.CharField(max_length=15, null=True, blank=True)
+    def __str__(self):
+        return f"{self.user.username}'s Profile"
 class HeroSection(models.Model):
     """ Model for hero section"""
     title = models.CharField(max_length=200, help_text="title for hero section")

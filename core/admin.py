@@ -1,9 +1,15 @@
 from django.contrib import admin
 from .models import HeroSection, Contact, About, Service
-from .models import BookedService, Lead, EmailCampaign, ContactUs
+from .models import BookedService, Lead, EmailCampaign, ContactUs, UserProfile
 
 
 # Register your models here.
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    list_display = ('user', 'state', 'address', 'phone_number')
+    ordering = ['user__username']
+    search_fields = ('user__username', 'phone_number', 'state')
+
 @admin.register(HeroSection)
 class HeroSectionAdmin(admin.ModelAdmin):
     list_display = ('title', 'description')

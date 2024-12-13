@@ -1,0 +1,77 @@
+
+{% extends "./main.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block stylelinks %}
+    <link rel="stylesheet" href="{% static 'css/mainSite/cartPage.css' %}">
+{% endblock stylelinks %}
+
+{% block title %} cart {% endblock title %}
+
+<!---==========================hero section ===========================-->
+{% block content %}
+        <div class="cart-page">
+            {% if cartitems %}
+                <div class="cart-items">   
+                    {% for item in cartitems %}
+                        <div class="cart-item">
+                            <img src="{{item.product.image.url}}" alt="Product Image" class="product-image">
+                            <div class="item-details">
+                                <p class="product-name">{{ item.product.name }}</p>
+                                <div class="quantity-container">
+                                    <label for="quantity">Quantity:</label>
+                                    <input type="number" id="quantity" name="quantity" data-action="{{item.id}}" value="{{item.quantity }}" min="1">
+                                </div>
+                                <p class="product-price">N{{ item.product.price }}</p>
+                                <button class="remove-button" onclick="window.location.href='/store/removeItem/{{ item.id }}/'">
+                                    Remove
+                                </button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="cart-total">
+                        <div class="total-label">
+                            <p>Total Price:</p>
+                        </div>
+                        <div class="total-price">
+                            <p>N {{ total_price }}</p> <!-- Example static total price, can be dynamically updated -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="checkout-form">
+                    <h2>Checkout Information</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="address">Address:</label>
+                            <input type="text" id="address" name="address" placeholder="Enter your address">
+                        </div>
+                        <div class="form-group">
+                            <label for="state">State:</label>
+                            <input type="text" id="state" name="state" placeholder="Enter your state">
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">Zip Code:</label>
+                            <input type="text" id="zip" name="zip" placeholder="Enter your zip code">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                        </div>
+                        <button type="submit" class="checkout-button">Proceed to Checkout</button>
+                    </form>
+                </div>
+            {% else %}
+                <div class="empty-cart">
+                    <p> cart currently empty <a href="{% url 'products' %}">Shop Now</a></p>
+                </div>
+            {% endif %}
+        </div>
+
+    {% block jsLinks %}
+        <script src="{% static 'javascript/mainSite/carts.js' %}"></script>
+    {% endblock %}
+
+
+{% endblock %}

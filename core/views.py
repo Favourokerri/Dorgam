@@ -1,12 +1,14 @@
 from django.contrib import messages
 from django.db import IntegrityError
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, HttpResponse
-from .models import HeroSection, About, Service, BookedService, Lead, ContactUs
+from .models import UserProfile, HeroSection, About, Service, BookedService, Lead, ContactUs
 from .functions import send_booking_email_to_client, send_booking_email_to_admin, addToLead
 from ecommerceShop.models import Product
 from .functions import contact_email_to_admin
+from .decorator import is_logged_in
 
 def signUp(request):
     if request.method == "POST":
@@ -19,7 +21,7 @@ def signUp(request):
             user = User.objects.create_user(
                 username=email, 
                 email=email,
-                password=make_password(password),
+                password=password,
                 first_name=first_name,
                 last_name=last_name
             )
@@ -33,8 +35,69 @@ def signUp(request):
             return render(request, "mainSite/signUpPage.html")
     return render(request, "mainSite/signUpPage.html")
 
-def login(request):
+def login_view(request):
+    if request.method == "POST":
+        email = request.POST["email"]
+        password = request.POST["password"]
+
+        # Authenticate user
+        user = authenticate(request, username=email, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "Logged in successfully!")
+            return redirect("home")
+        else:
+            messages.error(request, "Invalid email or password.")
+            return render(request, "mainSite/loginPage.html")
+
     return render(request, "mainSite/loginPage.html")
+
+@is_logged_in
+def logout_view(request):
+    logout(request)
+    messages.success(request, "You have been logged out successfully.")
+    return redirect('login')
+
+@is_logged_in
+def profile_page(request):
+    profile = UserProfile.objects.filter(user=request.user).first()
+    context = {"profile": profile}
+    return render(request, "mainSite/profilePage.html", context)
+
+@is_logged_in
+def edit_profile_page(request):
+    profile = UserProfile.objects.filter(user=request.user).first()
+
+    if request.method == "POST":
+        first_name = request.POST.get("firstName")
+        last_name = request.POST.get("lastName")
+        phone_number = request.POST.get("phoneNumber")
+        state = request.POST.get("state")
+        address = request.POST.get("address")
+
+        request.user.first_name = first_name
+        request.user.last_name = last_name
+        request.user.save()
+
+        if profile: 
+            profile.phone_number = phone_number
+            profile.state = state
+            profile.address = address
+            profile.save()
+
+        messages.success(request, "Profile updated successfully.")
+        return redirect("profile")
+    #sates in  nigeria
+    states = [
+        "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa",
+        "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Edo",
+        "Ekiti", "Enugu", "Gombe", "Imo", "Jigawa", "Kaduna",
+        "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos",
+        "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo",
+        "Plateau", "Rivers", "Sokoto", "Taraba", "Yobe", "Zamfara"
+    ]
+    context = {"userprofile": profile, "states": states}
+    return render(request, "mainSite/edithProfilePage.html", context)
 
 def home_page(request):
     heroContent = HeroSection.objects.first()

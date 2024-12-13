@@ -1,0 +1,60 @@
+
+{% extends "./main.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block stylelinks %}
+    <link rel="stylesheet" href="{% static 'css/mainSite/profilePage.css' %}">
+{% endblock stylelinks %}
+
+{% block title %} profile {% endblock title %}
+
+<!---==========================hero section ===========================-->
+{% block content %}
+    <div class="profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <img src="{% static 'images/profile.jpg' %}" alt="User Avatar" class="profile-avatar">
+                <h1 class="profile-name">{{ profile.user.first_name }}</h1>
+                <p class="profile-email">{{ profile.user.email }}</p>
+            </div>
+            <div class="profile-details">
+                <h2>Profile Details</h2>
+                <div class="detail">
+                    <span class="detail-label">first Name:</span>
+                    <span class="detail-value">{{ profile.user.first_name }}</span>
+                </div>
+
+                <div class="detail">
+                    <span class="detail-label">Last Name:</span>
+                    <span class="detail-value">{{ profile.user.last_name }}</span>
+                </div>
+                <div class="detail">
+                    <span class="detail-label">Email:</span>
+                    <span class="detail-value">{{ profile.user.email }}</span>
+                </div>
+                <div class="detail">
+                    <span class="detail-label">Phone Number:</span>
+                    <span class="detail-value">{{ profile.phone_number }}</span>
+                </div>
+                <div class="detail">
+                    <span class="detail-label">State:</span>
+                    <span class="detail-value">{{ profile.state }}</span>
+                </div>
+                <div class="detail">
+                    <span class="detail-label">Address:</span>
+                    <span class="detail-value">{{ profile.address }}</span>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <button class="action-btn edit-btn" onclick="window.location.href='/editProfile'">Edit Profile</button>
+                <button class="action-btn logout-btn" onclick="window.location.href='/logout'">Log Out</button>
+            </div>
+        </div>
+    </div>
+
+    {% block jsLinks %}
+    {% endblock %}
+
+
+{% endblock %}

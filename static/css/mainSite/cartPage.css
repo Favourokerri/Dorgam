@@ -1,0 +1,256 @@
+.cart-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 140px auto;
+    padding: 20px;
+    max-width: 1200px;
+    background-color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.cart-items {
+    flex: 1;
+    margin-right: 30px;
+    min-width: 300px;
+}
+
+.cart-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9fafc;
+    transition: transform 0.2s;
+}
+
+.cart-item:hover {
+    transform: scale(1.02);
+}
+
+.product-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.item-details {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.product-name {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.quantity-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-container label {
+    font-weight: 500;
+}
+
+#quantity {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.product-price {
+    font-size: 18px;
+    color: #28a745;
+    font-weight: bold;
+}
+
+.remove-button {
+    padding: 8px 15px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.remove-button:hover {
+    background-color: #c82333;
+}
+
+.cart-summary {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.total-price {
+    color: #007bff;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+.total-label {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+}
+
+.total-price {
+    font-size: 1.5em;
+    color: #000;
+    font-weight: bold;
+}
+
+.cart-total p {
+    margin: 0;
+}
+
+
+.checkout-form {
+    flex: 1;
+    max-width: 400px;
+    height: 500px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9fafc;
+    min-width: 300px;
+}
+
+.checkout-form h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+.checkout-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.checkout-button:hover {
+    background-color: #0056b3;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 20px;
+}
+
+.empty-cart p {
+    font-size: 30px;
+}
+
+.empty-cart p a {
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    background-color: orange;
+    padding: 6px;
+    border-radius: 10px;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cart-page {
+        flex-direction: column;
+
+    }
+
+    .cart-items {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .product-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .item-details {
+        justify-content: flex-start;
+    }
+
+    .checkout-form {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-title {
+        font-size: 22px;
+    }
+
+    .checkout-form h2 {
+        font-size: 20px;
+    }
+
+    .remove-button {
+        padding: 5px 10px;
+        font-size: 14px;
+    }
+}

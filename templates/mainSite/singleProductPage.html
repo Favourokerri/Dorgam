@@ -19,14 +19,18 @@
         <div class="product-details">
             <h1 class="product-title">{{ product.name }}</h1>
             <p class="product-price">N{{ product.price }}</p>
-            <div class="quantity-add-wrapper">
-                <div class="quantity-wrapper">
-                    <button class="quantity-btn">-</button>
-                    <input type="text" class="quantity-input" value="1">
-                    <button class="quantity-btn">+</button>
+            <form action="{% url 'addToCart' %}" method="POST" class="quantity-add-form">
+                {% csrf_token %}
+                <div class="quantity-add-wrapper">
+                    <div class="quantity-wrapper">
+                        <button type="button" id="decrease" class="quantity-btn">-</button>
+                        <input type="hidden" id="product-id" name="product_id" value="{{ product.id }}">
+                        <input type="number" id="quantity-input" class="quantity-input" value="1" name="quantity">
+                        <button type="button" id="increase" class="quantity-btn">+</button>
+                    </div>
+                    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
                 </div>
-                <button class="add-to-cart-btn">Add to Cart</button>
-            </div>
+            </form>            
             <div class="product-description">
                 <h2>Description</h2>
                 <p>{{ product.description |safe}}</p>
@@ -36,5 +40,6 @@
 
 
     {% block jsLinks %}
+        <script src="{% static 'javascript/mainSite/singleProductPage.js' %}"></script>
     {% endblock %}
 {% endblock %}
