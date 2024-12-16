@@ -24,9 +24,16 @@
                         <li><a href="{% url 'home' %}">Home</a></li>
                         <li><a href="{% url 'products' %}">Shop</a></li>
                         <li><a href="{% url 'cart' %}">cart</a></li>
+                        <li><a href="{% url 'orders' %}">view orders</a></li>
                         <li><a href="{% url 'services' %}">Services</a></li>
                         <li><a href="{% url 'about' %}">About Us</a></li>
                         <li><a href="{% url 'contactUs' %}">contact Us</a></li>
+                        {% if user.is_staff %}
+                        <!--- to login to admin panel if user is staff-->
+                        <li>
+                            <a href="/admin">AdminPanel</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
             </nav>
@@ -40,7 +47,7 @@
                     {% endif %}
                 </div>
 
-                <div class="cart">
+                <div class="cart" onclick="window.location.href='/store/cart'">
                     <a href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping"></i></a>
                     <div class="itemsNum"><p>{{cart_item_count}}</p></div>
                 </div>
@@ -66,9 +73,16 @@
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="{% url 'products' %}">Shop</a></li>
                     <li><a href="{% url 'cart' %}">view cart</a></li>
+                    <li><a href="{% url 'orders' %}">view orders</a></li>
                     <li><a href="{% url 'services' %}">Services</a></li>
                     <li><a href="{% url 'about' %}">About Us</a></li>
                     <li><a href="{% url 'contactUs' %}">contact Us</a></li>
+                    {% if user.is_staff %}
+                    <!--- to login to admin panel if user is staff-->
+                    <li>
+                        <a href="/admin">AdminPanel</a>
+                    </li>
+                {% endif %}
                 </ul>
             </div>
 
@@ -110,29 +124,43 @@
                     nostrum saepe nulla quae quam inventore deleniti magnam fugit! Similique!
                 </p>
 
-                <div class="socials">
-                   <a href="#"> <i href="shdyey" class="fa-brands fa-facebook"></i></a>
-                   <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-                   <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                   <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
+               <div class="socials">
+                {% if social.facebook %}
+                    <a href="{{ social.facebook }}" target="_blank">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                {% endif %}
+                
+                {% if social.twitter %}
+                    <a href="{{ social.twitter }}" target="_blank">
+                        <i class="fa-brands fa-twitter"></i>
+                    </a>
+                {% endif %}
+                
+                {% if social.instagram %}
+                    <a href="{{ social.instagram }}" target="_blank">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                {% endif %}
+            </div>
+
             </div>
 
             <div class="footer-services">
                 <h1> services</h1>
-                <a href="#"><i class="fa-solid fa-angle-right"></i>cleaning</a>
-                <a href="#"><i class="fa-solid fa-angle-right"></i>cleaning</a>
-                <a href="#"><i class="fa-solid fa-angle-right"></i>cleaning</a>
-                <a href="#"><i class="fa-solid fa-angle-right"></i>cleaning</a>
+                {% for service in services %}
+                    <a href="{% url 'service' service.id %}"><i class="fa-solid fa-angle-right"></i>{{ service.name_of_service }}</a>
+                {% endfor %}
             </div>
 
             <div class="footer-links">
                 <h1> Site Map </h1>
                 <ul>
-                    <li><i class="fa-solid fa-angle-right"></i><a href="#">Home</a></li>
+                    <li><i class="fa-solid fa-angle-right"></i><a href="{% url 'home' %}">Home</a></li>
                     <li><i class="fa-solid fa-angle-right"></i><a href="{% url 'services' %}">services</a></li>
-                    <li><i class="fa-solid fa-angle-right"></i><a href="#">Home</a></li>
-                    <li><i class="fa-solid fa-angle-right"></i><a href="#">Home</a></li>
+                    <li><i class="fa-solid fa-angle-right"></i><a href="{% url 'contactUs' %}">contact Us</a></li>
+                    <li><i class="fa-solid fa-angle-right"></i><a href="{% url 'about' %}">About Us</a></li>
+                     <li><i class="fa-solid fa-angle-right"></i><a href="{% url 'cart' %}">view cart</a></li>
                 </ul>
             </div>
 
@@ -147,6 +175,14 @@
                     <div class="info">
                         <i class="fa-solid fa-envelope"></i>
                         <p>{{ contact.email }}</p>
+                    </div>
+
+                    <div class="newsletter">
+                        <form action="{% url 'subscribe' %}" method="post">
+                             {% csrf_token %}
+                             <input type="email" required placeholder="enter email" name="email">
+                             <button type="submit">submit</button>
+                        </form>
                     </div>
             </div>
         </div>

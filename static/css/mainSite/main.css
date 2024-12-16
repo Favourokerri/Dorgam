@@ -394,6 +394,24 @@ footer {
     color: gray;
 }
 
+footer .newsletter input{
+    border: 2px solid rgb(166, 125, 73);
+    height: 25px;
+    border-radius: 5px;
+    padding: 10px;
+    outline: none;
+}
+
+footer .newsletter button {
+    background-color: rgb(166, 125, 73);
+    color: white;
+    border: none;
+    padding: 5px;
+    width: 100px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
 footer .copyright {
     margin-top: 80px;
     color: white;
@@ -484,6 +502,11 @@ footer .copyright p {
     .footer-contact-info p {
         font-size: 18px;
     }
+
+    footer .newsletter input{
+        height: 30px;
+    }
+
 
     footer .copyright {
         margin-top: 20px;

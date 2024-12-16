@@ -1,0 +1,102 @@
+
+{% extends "./main.html" %}
+{% load static %}
+
+{% block stylelinks %}
+    <link rel="stylesheet" href="{% static 'css/mainSite/singleServicesPage.css' %}">
+{% endblock stylelinks %}
+
+{% block title %} services {% endblock title %}
+
+<!---==========================hero section ===========================-->
+{% block content %}
+    <div class="service-image">
+            <div class="links">
+                <h1> {{ service.name_of_service }} </h1>
+                <a href="{% url 'services' %}">services</a>
+            </div>
+        </div>
+    <div class="service-page">
+    <!-- Service Description -->
+        <div class="service-description">
+            <h1>{{ service.name_of_service }}</h1>
+           <p> {{ service.detail|safe }}</p>
+        </div>
+
+        <!-- Service Form-->
+       <form action="{% url 'bookService' %}" method="post">
+        {% csrf_token %}
+    
+            <!-- Full Name and Phone Number Row -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your phone number" required>
+                </div>
+            </div>
+
+            <!-- Email and Best Time to Contact Row -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="bestTime">Best Time to Contact</label>
+                    <select id="bestTime" name="bestTime" required>
+                        <option value="" disabled selected>Select a time</option>
+                        <option value="morning">Morning</option>
+                        <option value="afternoon">Afternoon</option>
+                        <option value="evening">Evening</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Preferred Contact Method and Service Row -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="contactMethod">Preferred Contact Method</label>
+                    <select id="contactMethod" name="contactMethod" required>
+                        <option value="" disabled selected>Select a method</option>
+                        <option value="phone call">Phone call</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="email">Email</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="service">Service</label>
+                    <select id="service" name="service" required>
+                        <option value="{{ service.name_of_service }}"selected>{{ service.name_of_service }}</option>
+                        
+                        {% if services %}
+                            {% for service in services %}
+                                <option value="{{ service.name_of_service }}">{{ service.name_of_service }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="">No services available</option>
+                        {% endif %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Additional Notes Field -->
+            <div class="form-group full-width">
+                <label for="notes">Additional Notes</label>
+                <textarea id="notes" name="notes" placeholder="Any additional information..."></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Book Now</button>
+        </form>
+
+    </div>
+
+
+{% endblock %}

@@ -14,7 +14,7 @@
         <div class="about-image">
             <div class="links">
                 <h1> About Us </h1>
-                <a href="#">Home</a>
+                <a href="{% url 'home' %}">Home</a>
             </div>
         </div>
 
@@ -32,8 +32,8 @@
                 <img src="{% static 'images/aboutPage/about1.svg' %}" alt="" srcset="">
 
                 <div class="about-action">
-                    <a href="#">Contact Us</a>
-                    <a href="#">Go to home Page</a>
+                    <a href="{% url 'contactUs' %}">Contact Us</a>
+                    <a href="{% url 'home' %}">Go to home Page</a>
                 </div>
             </div>
         </div>

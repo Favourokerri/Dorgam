@@ -160,8 +160,7 @@ class EmailCampaign(models.Model):
         except Exception as e:
             print(f"Error while sending email: {e}")
             raise
-
-
+    
 @receiver(post_save, sender=EmailCampaign)
 def send_campaign_email(sender, instance, created, **kwargs):
     """ Signal to automatically send the email after saving the campaign """
@@ -172,3 +171,11 @@ def send_campaign_email(sender, instance, created, **kwargs):
     request.META['HTTP_HOST'] = settings.SITE_DOMAIN  # Set the domain for absolute URLs
 
     instance.send_email(request)
+
+class SocialMedia(models.Model):
+    facebook = models.URLField(max_length=200, blank=True, null=True)
+    instagram = models.URLField(max_length=200, blank=True, null=True)
+    twitter = models.URLField(max_length=200, blank=True, null=True)
+
+    def __str__(self):
+        return f"social media"

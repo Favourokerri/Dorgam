@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import HeroSection, Contact, About, Service
-from .models import BookedService, Lead, EmailCampaign, ContactUs, UserProfile
+from .models import BookedService, Lead, EmailCampaign, ContactUs, UserProfile, SocialMedia
 
 
 # Register your models here.
@@ -52,3 +52,4 @@ class EmailCampaignAdmin(admin.ModelAdmin):
     search_fields = ('title', 'audience')
 
 admin.site.register(About)
+admin.site.register(SocialMedia)

@@ -128,6 +128,13 @@ def services(request):
     context = {'services': services, 'search_query': search_query}
     return render(request, "mainSite/servicesPage.html", context)
 
+def single_service(request, id):
+    service = Service.objects.get(id=id)
+    services = Service.objects.all()
+    context= {"service": service, "services": services}
+
+    return render(request, "mainSite/singleServicePage.html", context)
+
 def book_service(request):
     if request.method == 'POST':
         try:
@@ -168,6 +175,14 @@ def book_service(request):
     services = Service.objects.all()
     context = {'services': services}
     return render(request, "mainSite/bookServicePage.html", context)
+
+def subscribe(request):
+     if request.method == 'POST':
+         email = request.POST.get('email')
+         addToLead(email, email)
+         messages.success(request, "thanks for subscribing to our newsletter")
+         return redirect('home')
+     return render(request, "mainSite/homePage.html")
 
 def unsubscribe(request, email):
     """

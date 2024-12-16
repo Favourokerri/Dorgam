@@ -1,0 +1,65 @@
+
+{% extends "./main.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block stylelinks %}
+    <link rel="stylesheet" href="{% static 'css/mainSite/orderPage.css' %}">
+{% endblock stylelinks %}
+
+{% block title %} orders {% endblock title %}
+
+<!---==========================cart section ===========================-->
+{% block content %}
+        <div class="cart-page">
+            {% if orders %}
+                <div class="cart-items">   
+                    {% for order in orders %}
+                         <div class="cart-total">
+                            <div class="total-label">
+                                <p>order Id:</p>
+                            </div>
+                            <div class="total-label">
+                                 <p id="total_price">{{order.id}}</p>
+                            </div>
+                            
+                             <div class="total-price">
+                                <p id="total_price">delivery date:</p>
+                            </div>
+                            <div class="total-price">
+                                <p id="total_price">{{order.delivery_date}}</p>
+                            </div>
+                          </div>
+                        {% for item in order.order_items.all %}
+                            <div class="cart-item">
+                                <img src="{{item.product.image.url}}" alt="Product Image" class="product-image">
+                                <div class="item-details">
+                                    <p class="product-name">{{ item.product.name }}</p>
+                                    <div class="quantity-container">
+                                        <label for="quantity">Quantity:</label>
+                                        <input type="number" id="quantity" name="quantity" value="{{item.quantity }}"  disabled>
+                                    </div>
+                                    <p class="product-price">N{{ item.total_price_display }}</p>
+                                     <button class="payment-button">
+                                        {{item.payment_status}}
+                                    </button>
+                                    <button class="remove-button">
+                                        {{item.delivery_status}}
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-cart">
+                    <p> No orders yet <a href="{% url 'cart' %}">order Now</a></p>
+                </div>
+            {% endif %}
+        </div>
+
+{% endblock %}
+
+{% block jsLinks %}
+       
+{% endblock %}

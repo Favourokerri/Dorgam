@@ -11,8 +11,10 @@ urlpatterns = [
     path('profile', views.profile_page, name="profile"),
     path('about', views.about_page, name="about"),
     path('services', views.services, name="services"),
+    path('service/<int:id>/', views.single_service, name="service"),
     path('bookService', views.book_service, name="bookService"),
     path('contactUs', views.contact_us, name="contactUs"),
     path('unsubscribe/<str:email>/', views.unsubscribe, name='unsubscribe'),
+    path('subscribe', views.subscribe, name="subscribe"),
 
 ]

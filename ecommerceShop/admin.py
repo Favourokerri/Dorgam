@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, Cart, CartItem
+from .models import Category, Product, Cart, CartItem, State, Order, OrderItem
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -43,7 +43,7 @@ class CartAdmin(admin.ModelAdmin):
 # Register the CartItem model
 @admin.register(CartItem)
 class CartItemAdmin(admin.ModelAdmin):
-    list_display = ('cart__user', 'product', 'quantity', 'total_price', 'created_at', 'updated_at')
+    list_display = ('cart__user', 'product', 'quantity', 'total_price',  'created_at', 'updated_at')
     list_filter = ('cart', 'product')
     search_fields = ('cart__user__username', 'product__name')
     ordering = ('-created_at',)
@@ -52,3 +52,24 @@ class CartItemAdmin(admin.ModelAdmin):
         """Display the total price for this cart item."""
         return f"${obj.total_price():.2f}"
     total_price.short_description = 'Total Price'
+
+@admin.register(State)
+class StateAdmin(admin.ModelAdmin):
+    list_display = ('name', 'shipping_fee', 'delivery_available')
+    search_fields = ('name',)
+    ordering = ('name',)
+
+@admin.register(OrderItem)
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ('order', 'product', 'quantity', 'total_price', 'payment_status', 'delivery_status')
+    search_fields = ('product__name',)
+    list_filter = ('delivery_status', 'payment_status')
+    ordering = ('-order',)
+
+# Register Order with its admin configuration
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'user', 'state', 'shipping_address', 'cart_item_amount', 'shipping_fee', 'total_amount', 'delivery_date', 'status', 'payment_status', 'created_at')
+    list_filter = ('status', 'payment_status', 'state',)
+    search_fields = ('user__username', 'shipping_address', 'order_items__product__name')
+    ordering = ('-created_at',)

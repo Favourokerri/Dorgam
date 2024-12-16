@@ -17,16 +17,15 @@ function getCookie(name) {
 const csrftoken = getCookie('csrftoken');
 
 
-//code for increase, decrease and remove
-const inputs = document.querySelectorAll(".quantity");
+const inputs = document.querySelectorAll("#quantity");
+let total_price = document.getElementById("total_price");
+
 inputs.forEach(input => {
     input.addEventListener("input", function (e) {
-        console.log("input changed");
-        // let product_id = e.target.value; // Access the "data-product-id" attribute
         let url = "/store/updateItem";
         let item_id = this.dataset.action;
-        let data = { item_id: item_id };
-        console.log(action);
+        let data = { item_id: item_id, quantity: this.value };
+        console.log(data);
 
         fetch(url, {
             method: "POST",
@@ -35,8 +34,32 @@ inputs.forEach(input => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
-            location.reload();
+            console.log(data.message);
+            if (data.total_price){
+                total_price.innerHTML = `N${data.total_price}`
+            }
         });
     });
 });
+
+//shipping fee
+ const stateSelect = document.getElementById('state');
+ let shppingFee = document.getElementById('shippingFee');
+ let shippingFeeInput = document.getElementById('shipping-fee');
+    stateSelect.addEventListener('change', function() {
+        let url = "/store/shippingFee";
+        const selectedStateId = stateSelect.value;
+        let data = { state_id: selectedStateId};
+
+        fetch(url, {
+            method: "POST",
+            headers: { "content-type": "application/json", 'X-CSRFToken': csrftoken },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data.message);
+            shppingFee.innerHTML = `N${data.shippingFee}`
+            shippingFeeInput.value = data.shippingFee
+        });
+    });

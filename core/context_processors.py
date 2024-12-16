@@ -1,11 +1,19 @@
 from django.shortcuts import render
-from .models import Contact
+from .models import Contact, Service, SocialMedia
 from ecommerceShop.models import Cart
 
 # Create your views here.
 def contact_info(request):
     contactInfo = Contact.objects.first()
     return {"contact": contactInfo}
+
+def services(request):
+    services = Service.objects.all()[:5]
+    return {"services": services}
+
+def social_media_view(request):
+    social = SocialMedia.objects.first()  # You can adjust the query as needed
+    return {'social': social}
 
 def cart_item_count(request):
     """

@@ -31,10 +31,12 @@
                     
                     {% for service in services %}
                         <li class="card-items">
-                            <a href="#" class="card-link">
-                                <img src="{{ service.image.url}}" alt="" class="card-image">
+                            <a  class="card-link">
+                               <div onclick="window.location.href='service/{{service.id}}'">
+                                 <img src="{{ service.image.url}}" alt="" class="card-image">
                                 <p class="badge">book service</p>
                                 <h2 class="card-title">{{ service.name_of_service }}</h2>
+                               </div>
                                 <div class="card-btn">
                                     <button class="card-button fa-solid fa-arrow-right"></button>
                                     <button class="badge bookbtn" onclick="window.location.href='/bookService'">book service </button>

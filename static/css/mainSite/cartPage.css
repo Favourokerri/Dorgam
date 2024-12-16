@@ -162,7 +162,7 @@
     font-weight: 500;
 }
 
-.form-group input {
+.form-group input, .form-group select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
@@ -252,5 +252,9 @@
     .remove-button {
         padding: 5px 10px;
         font-size: 14px;
+    }
+
+    .total-price p {
+        font-size: 18px;
     }
 }

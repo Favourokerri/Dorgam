@@ -5,6 +5,7 @@
 {% block stylelinks %}
                             <!--=========swiper css =======-->
     <link rel="stylesheet" href="{% static 'css/mainSite/singleProductPage.css' %}">
+     <link rel="stylesheet" href="{% static 'css/mainSite/shopPage.css' %}">
 {% endblock stylelinks %}
 
 {% block title %} singleProduct {% endblock title %}
@@ -25,7 +26,7 @@
                     <div class="quantity-wrapper">
                         <button type="button" id="decrease" class="quantity-btn">-</button>
                         <input type="hidden" id="product-id" name="product_id" value="{{ product.id }}">
-                        <input type="number" id="quantity-input" class="quantity-input" value="1" name="quantity">
+                        <input type="number" id="quantity-input" class="quantity-input" value="1" name="quantity" min="1">
                         <button type="button" id="increase" class="quantity-btn">+</button>
                     </div>
                     <button type="submit" class="add-to-cart-btn">Add to Cart</button>
@@ -37,6 +38,41 @@
             </div>
         </div>
     </div>
+
+         
+        {% if products %}
+        <h1 style="text-align: center; color: orangered"> Related Products</h1>
+            <div class="products-container container">
+                
+                {% for product in products %}
+                    <div class="product" onclick="window.location.href='/store/product/{{ product.id }}/'">
+                        <div class="product-image">
+                            <img src="{{ product.image.url }}" alt="" srcset="">
+                        </div>
+                        <div class="action">
+                            <button class="addToCart" ><i class="fa-solid fa-bag-shopping" ></i>add to cart</button>
+                        </div>
+        
+                        <div class="product-info">
+                            {% for category in product.categories.all %}
+                                <p class="category">{{ category }}</p>
+                            {% endfor %}
+                            <h1> {{ product.name }}</h1>
+
+                            {% for category in product.categories.all %}
+                                {% if category.name|upper == "INTERLOCK" %}
+                                    <p class="price">N{{ product.price|intcomma }} per square meter</p>
+                                {% else %}
+                                    <p class="price">N{{ product.price|intcomma }} per unit</p>
+                                {% endif %}
+                        {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}               
+                
+            </div>
+        {% endif %}
+
 
 
     {% block jsLinks %}

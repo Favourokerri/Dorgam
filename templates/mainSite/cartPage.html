@@ -9,7 +9,7 @@
 
 {% block title %} cart {% endblock title %}
 
-<!---==========================hero section ===========================-->
+<!---==========================cart section ===========================-->
 {% block content %}
         <div class="cart-page">
             {% if cartitems %}
@@ -35,30 +35,63 @@
                             <p>Total Price:</p>
                         </div>
                         <div class="total-price">
-                            <p>N {{ total_price }}</p> <!-- Example static total price, can be dynamically updated -->
+                            <p id="total_price">N{{ total_price }}</p> <!-- Example static total price, can be dynamically updated -->
+                        </div>
+                    </div>
+
+                    <div class="cart-total">
+                        <div class="total-label">
+                            <p>Shipping fee:</p>
+                        </div>
+                        <div class="total-price">
+                            <p id="shippingFee">select state</p>
+                        </div>
+                    </div>
+
+                    <div class="cart-total">
+                        <div class="total-label">
+                            <p>Delivery Date</p>
+                        </div>
+                        <div class="total-price">
+                            <p id="delivery_date">{{ delivery_date }}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="checkout-form">
                     <h2>Checkout Information</h2>
-                    <form>
-                        <div class="form-group">
-                            <label for="address">Address:</label>
-                            <input type="text" id="address" name="address" placeholder="Enter your address">
+                     <form action="{% url 'checkout' %}" method="post">
+                        {% csrf_token %}
+                         <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
                         </div>
+
                         <div class="form-group">
                             <label for="state">State:</label>
-                            <input type="text" id="state" name="state" placeholder="Enter your state">
+                            <select id="state" name="state" class="form-control" required>
+                                <option value="">Select your state</option>  <!-- Default option -->
+                                {% for state in states %}
+                                    <option value="{{ state.id }}">{{ state.name }}</option>
+                                {% empty %}
+                                    <option value="">No states available</option>
+                                {% endfor %}
+                            </select>
                         </div>
+
                         <div class="form-group">
-                            <label for="zip">Zip Code:</label>
-                            <input type="text" id="zip" name="zip" placeholder="Enter your zip code">
+                            <label for="address">Address:</label>
+                            <input type="text" id="address" name="address" placeholder="Enter your address" required>
                         </div>
+
                         <div class="form-group">
-                            <label for="phone">Phone Number:</label>
-                            <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                            <input type="text" id="shipping-fee" name="shipping-fee" value="" hidden>
                         </div>
+
+                          <div class="form-group">
+                            <input type="text" id="deliveryDate" name="deliveryDate" value="{{ delivery_date }}" hidden>
+                        </div>
+                        
                         <button type="submit" class="checkout-button">Proceed to Checkout</button>
                     </form>
                 </div>
@@ -69,9 +102,8 @@
             {% endif %}
         </div>
 
-    {% block jsLinks %}
-        <script src="{% static 'javascript/mainSite/carts.js' %}"></script>
-    {% endblock %}
+{% endblock %}
 
-
+{% block jsLinks %}
+        <script src="{% static 'javascript/mainSite/cart.js' %}"></script>
 {% endblock %}

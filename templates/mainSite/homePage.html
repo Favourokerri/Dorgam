@@ -22,8 +22,8 @@
                     {{heroContent.description}}
                 </p>
     
-                <a href="#" class="SignUp">SignUp <i class="fa-solid fa-chevron-right"></i></a>
-                <a href="#" class="store">View Store</a>
+                <a href="{% url 'signUp' %}" class="SignUp">SignUp <i class="fa-solid fa-chevron-right"></i></a>
+                <a href="{% url 'products' %}" class="store">View Store</a>
             </div>
     
             <div class="hero-image">
@@ -39,7 +39,7 @@
             <div class="icon"><i class="fa-solid fa-shuttle-space"></i></div>
             <div class="text">
                 <h1>Fast Delivery</h1>
-                <p>We deliver very fast</p>
+                <p>Lightning-fast delivery, right to your door</p>
             </div>
         </div>
 
@@ -47,7 +47,7 @@
             <div class="icon"><i class="fa-solid fa-money-bill"></i></div>
             <div class="text">
                 <h1>Money Return</h1>
-                <p>garanteed under 7 days</p>
+                <p>Money-back guarantee within 7 days</p>
             </div>
         </div>
 
@@ -55,7 +55,7 @@
             <div class="icon"><i class="fa-solid fa-headset"></i></div>
             <div class="text">
                 <h1>Online support 24/7</h1>
-                <p>Online support 24/7 per day</p>
+                <p>Round-the-clock online support, 24/7.</p>
             </div>
         </div>
 
@@ -82,7 +82,7 @@
                 
                 {% for service in services  %}
                 <li class="card-items swiper-slide">
-                    <a href="#" class="card-link">
+                    <a href="{% url 'service' service.id %}" class="card-link">
                         <img src="{{ service.image.url }}" alt="" class="card-image">
                         <p class="badge">we offer the best</p>
                         <h2 class="card-title">{{ service.name_of_service }}</h2>
