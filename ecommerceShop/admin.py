@@ -10,8 +10,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'get_categories',)
-    list_filter = ('categories',)
+    list_display = ('name', 'price', 'get_categories', 'is_instock')
+    list_filter = ('categories', 'is_instock')
     search_fields = ('name', 'categories__name')
     ordering = ('-created_at',)
 

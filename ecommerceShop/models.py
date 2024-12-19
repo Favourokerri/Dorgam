@@ -17,6 +17,7 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     shipping_duration = models.IntegerField(help_text="number of days for ordered product to get to consumer")
+    is_instock =  models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
     categories = models.ManyToManyField(Category, related_name='products')
     description = CKEditor5Field(config_name='default')

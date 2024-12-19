@@ -264,6 +264,123 @@
     color: white;
 }
 
+/* Section styling */
+.testimonial-section {
+  background-color: #f8f9fa;
+  padding: 60px 20px;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Title styling */
+.section-title {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+/* Swiper container styling */
+.swiper-container {
+  width: 100%;
+  height: auto;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Testimonial card styling */
+.testimonial {
+  background-color: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  text-align: center;
+  margin: 0 15px;
+  overflow: hidden;
+  height: 200px;
+  width: 380px;
+}
+
+/* Testimonial text styling */
+.testimonial-text {
+  font-size: 1.2em;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+/* Author info */
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.author-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.author-info {
+  text-align: left;
+}
+
+.author-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.author-position {
+  font-size: 0.9em;
+  color: #777;
+}
+
+.review-btn{
+    margin-top: 20px;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: rgb(166, 125, 73);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Swiper navigation arrows styling */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #007bff;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  padding: 10px;
+}
+
+/* Swiper pagination dots */
+.swiper-pagination-bullet {
+  background-color: #007bff;
+  opacity: 1;
+}
+
+/* Hover effects */
+.testimonial:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+
 /* Define the slide-in animation */
 @keyframes slideIn {
     to {
@@ -335,6 +452,10 @@
     .service-featured .card-wrapper {
         padding: 20px;
 
+    }
+
+    .testimonial{
+        padding: 10px;
     }
 
 

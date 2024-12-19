@@ -1,0 +1,46 @@
+{% extends "./main.html" %}
+{% load static %}
+
+{% block stylelinks %}
+    <link rel="stylesheet" href="{% static 'css/mainSite/reviewsPage.css' %}">
+{% endblock stylelinks %}
+
+{% block title %} Reviews {% endblock title %}
+
+<!---========================== Review Section ===========================-->
+{% block content %}
+    <div class="review-container container">
+        <div class="review-info">
+            <h1>Submit Your Review</h1>
+            <p>
+                We value your feedback! Share your thoughts with us.
+            </p>
+
+            <form action="{% url 'reviews' %}" method="post">
+                {% csrf_token %}
+                 <div>
+                    <label for="email">Your email</label>
+                    <input type="text" required id="email" name="email">
+                </div>
+
+                <div>
+                    <label for="name">Your Name</label>
+                    <input type="text" required id="name" name="name">
+                </div>
+
+                <div>
+                    <label for="text">Your Review</label>
+                    <textarea name="text" id="text" rows="7" required maxlength="130"></textarea>
+                </div>
+
+                <button type="submit">Submit Review</button>
+            </form>
+        </div>
+
+        <div class="review-image">
+            <img src="{% static 'images/contactPage/supports.png' %}" alt="">
+        </div>
+    </div>
+    {% block jsLinks %}
+    {% endblock %}
+{% endblock %}

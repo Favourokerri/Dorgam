@@ -105,3 +105,30 @@ def contact_email_to_admin(request, name, email, message):
         email_message.send()
     except Exception as e:
         print(f"Error sending email to admins: {e}")
+
+def review_email_to_admin(request, name, email, message):
+    admins = User.objects.filter(is_staff=True, is_active=True).values_list('email', flat=True)
+
+    if not admins:
+        print("No admin emails found.")
+        return
+    
+    email_body = render_to_string('emails/reviw_admin_notification.html', {
+        'name': name,
+        'email': email,
+        'message': message,
+    })
+
+    # Create the email
+    email_message = EmailMessage(
+        subject='Client Dropped a review Hurray..',
+        body=email_body,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to=list(admins),
+    )
+    email_message.content_subtype = 'html'
+
+    try:
+        email_message.send()
+    except Exception as e:
+        print(f"Error sending email to admins: {e}")

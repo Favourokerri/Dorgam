@@ -22,7 +22,11 @@
                     {{heroContent.description}}
                 </p>
     
-                <a href="{% url 'signUp' %}" class="SignUp">SignUp <i class="fa-solid fa-chevron-right"></i></a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}" class="SignUp">Profile <i class="fa-solid fa-chevron-right"></i></a>
+                {% else %}
+                    <a href="{% url 'signUp' %}" class="SignUp">SignUp <i class="fa-solid fa-chevron-right"></i></a>
+                {% endif %}
                 <a href="{% url 'products' %}" class="store">View Store</a>
             </div>
     
@@ -103,7 +107,7 @@
         </div>
 
         <div class="featured-service-btn">
-            <a href="{% url 'services' %}"> Book A service </a>
+            <a href="{% url 'bookService' %}"> Book A service </a>
         </div>
     </div>
     {% endif %}
@@ -146,10 +150,41 @@
             <a href="{% url 'products' %}"> View all products</a>
         </div>
 
+        <section class="testimonial-section">
+            <h2 class="section-title">What People Say About Us</h2>
+            <div class="testimonials-wrapper">
+                <div class="swiper-wrapper">
+                
+                {% for review in reviews %}
+                <div class="swiper-slide">
+                    <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"{{review.text}}"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="{% static 'images/homePage/star.jpeg' %}" alt="Author Image" class="author-img" />
+                        <div class="author-info">
+                        <h4 class="author-name">{{review.name}}</h4>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                {% endfor %}
+                </div>
+                <!-- Pagination -->
+                <div class="swiper-pagination"></div>
+
+                  <a href="{% url 'reviews' %}" class="review-btn"> Leave a review</a>
+                
+            </div>
+        </section>
+
+
     {% endif %}
 
     {% block jsLinks %}
                     <!-- swiper js-->
+        
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script src="{% static 'javascript/mainSite/homePage.js' %}"></script> 
     {% endblock %}

@@ -34,4 +34,38 @@ new Swiper('.card-wrapper', {
       },
     },
   });
+
+
+new Swiper('.testimonials-wrapper', {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      
+
+      // automatic slide
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false, // Continue autoplay after user interactions
+      },
+      breakpoints: {
+        640: {
+          slidesPerView: 1,
+          spaceBetween: 10
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 20
+        },
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 30
+        }
+      }
+  });
+  
+ 
   

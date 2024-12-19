@@ -16,5 +16,6 @@ urlpatterns = [
     path('contactUs', views.contact_us, name="contactUs"),
     path('unsubscribe/<str:email>/', views.unsubscribe, name='unsubscribe'),
     path('subscribe', views.subscribe, name="subscribe"),
+    path('reviews', views.reviews, name="reviews"),
 
 ]

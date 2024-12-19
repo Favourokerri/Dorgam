@@ -161,6 +161,10 @@
     overflow: hidden;
 }
 
+.product-info h1 {
+    font-size: 20px;
+}
+
 
 .product-info .category {
     color: rgb(166, 125, 73);

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import HeroSection, Contact, About, Service
-from .models import BookedService, Lead, EmailCampaign, ContactUs, UserProfile, SocialMedia
+from .models import BookedService, Lead, EmailCampaign, ContactUs, UserProfile, SocialMedia, Review
 
 
 # Register your models here.
@@ -50,6 +50,13 @@ class EmailCampaignAdmin(admin.ModelAdmin):
     list_display = ('title', 'audience', 'created_at', 'updated_at')
     list_filter = ('audience',)
     search_fields = ('title', 'audience')
+
+@admin.register(Review)
+class ReviewsAdmin(admin.ModelAdmin):
+    list_display = ('name', 'approved',)
+    ordering = ['-created_at']
+    list_filter = ('approved',)
+    search_fields = ('name',)
 
 admin.site.register(About)
 admin.site.register(SocialMedia)

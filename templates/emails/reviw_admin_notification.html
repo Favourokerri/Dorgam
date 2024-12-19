@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #5f9ea0;
+        }
+
+        ul li {
+            padding: 5px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #5f9ea0;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .btn:hover {
+            background-color: #4a8a87;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Client Review</h1>
+        <p>Dear Admin,</p>
+        <p>A client has just dropped a review. Please check and approve to display on site. Below are the details:</p>
+        
+        <ul>
+            <li><strong>Full Name:</strong> {{ name }}</li>
+            <li><strong>Email:</strong> {{ email }}</li>
+            <li><strong>review:</strong> {{ message }}</li>
+        </ul>
+        
+        <p>Please attend to this  promptly. For more details click the button below:</p>
+        
+        <a href="{{ booking_url }}" class="btn">View on Website</a>
+        
+        <p>Thank you for ensuring timely service delivery to our clients.</p>
+        
+        <p>Best regards,</p>
+        <p><strong>The Dorgam Integrated System</strong></p>
+        
+        <div class="footer">© 2024 Dorgam Integrated. All rights reserved.
+            <p>
+                If you wish to unsubscribe from our emails, click 
+                <a href="{{ unsubscribe_url }}" style="color: #5f9ea0; text-decoration: none;">unsubscribe</a>.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -179,3 +179,16 @@ class SocialMedia(models.Model):
 
     def __str__(self):
         return f"social media"
+
+class Review(models.Model):
+    # Fields for the review
+    name = models.CharField(max_length=255)  # The person's name
+    text = models.TextField()  # The review text
+    created_at = models.DateTimeField(auto_now_add=True)  # Timestamp for the review
+    approved = models.BooleanField(default=False)  # Approval status, default is False (Pending)
+
+    def __str__(self):
+        return f"Review by {self.name}"
+
+    class Meta:
+        ordering = ['-created_at']  # Order reviews by latest first

@@ -18,7 +18,7 @@ def products(request):
     search_query = request.GET.get('q', '')
     category_filter = request.GET.get('category', 'all')
     
-    products = Product.objects.all()
+    products = Product.objects.filter(is_instock=True)
 
     if search_query:
         products = products.filter(name__icontains=search_query)

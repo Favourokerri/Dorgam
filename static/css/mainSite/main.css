@@ -5,7 +5,7 @@
 }
 
 body {
-    overflow-x: hidde
+    overflow-x: hidden;
 }
 
 .no-scroll {
@@ -73,7 +73,7 @@ nav {
 .nav-links ul li a {
     text-decoration: none;
     color: black;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 400;
     transition: 0.5s ease;
 }
@@ -279,9 +279,13 @@ footer {
     display: flex;
 }
 
+footer h1 {
+    font-size: 20px;
+}
+
 .footer-about p {
     color: gray;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .footer-about .socials {
@@ -293,7 +297,7 @@ footer {
     margin-right: 20px;
     color: white;
     text-decoration: none;
-    font-size: 25px;
+    font-size: 18px;
 }
 
 .footer-about .socials a:hover {
@@ -316,7 +320,7 @@ footer {
     text-decoration: none;
     margin-top: 10px;
     padding: 5px;
-    font-size: 22px;
+    font-size: 18px;
     overflow: hidden;
 }
 
@@ -349,7 +353,7 @@ footer {
 .footer-links a {
     color: gray;
     text-decoration: none;
-    font-size: 22px;
+    font-size: 18px;
     overflow: hidden;
 }
 
@@ -455,7 +459,7 @@ footer .copyright p {
     }
 
     .footer-about h1 {
-        font-size: 25px;
+        font-size: 20px;
     }
 
     .footer-about p {
@@ -468,7 +472,7 @@ footer .copyright p {
     }
 
     .footer-services h1 {
-        font-size: 30px;
+        font-size: 20px;
     }
 
     .footer-services a {
@@ -487,7 +491,7 @@ footer .copyright p {
     }
 
     .footer-links h1 {
-        font-size: 25px;
+        font-size: 20px;
     }
 
     .footer-contact-info {
@@ -496,7 +500,7 @@ footer .copyright p {
     }
 
     .footer-contact-info h1 {
-        font-size: 25px;
+        font-size: 20px;
     }
 
     .footer-contact-info p {

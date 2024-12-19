@@ -4,8 +4,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from django.shortcuts import render, redirect, HttpResponse
-from .models import UserProfile, HeroSection, About, Service, BookedService, Lead, ContactUs
-from .functions import send_booking_email_to_client, send_booking_email_to_admin, addToLead
+from .models import UserProfile, HeroSection, About, Service, BookedService, Lead, ContactUs, Review
+from .functions import send_booking_email_to_client, send_booking_email_to_admin, addToLead, review_email_to_admin
 from ecommerceShop.models import Product
 from .functions import contact_email_to_admin
 from .decorator import is_logged_in
@@ -102,11 +102,13 @@ def edit_profile_page(request):
 def home_page(request):
     heroContent = HeroSection.objects.first()
     services = Service.objects.all()
-    featured_products = Product.objects.filter(is_featured=True)
+    featured_products = Product.objects.filter(is_featured=True, is_instock=True)
+    approved_reviews = Review.objects.filter(approved=True)
     
     context = {'heroContent': heroContent,
                'services': services,
-               'featured_products': featured_products
+               'featured_products': featured_products,
+               'reviews': approved_reviews,
                }
 
     return render(request, "mainSite/homePage.html", context)
@@ -199,6 +201,22 @@ def unsubscribe(request, email):
         print(f"Error during unsubscribe: {e}")
         return HttpResponse("An unexpected error occurred. Please try again later.", status=500)
     return redirect(home_page)
+
+
+def reviews(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        text = request.POST.get('text')
+        email = request.POST.get('email')
+
+        new_review = Review.objects.create(name=name, text=text, approved=False)
+        review_email_to_admin(request, name, email, text)
+        addToLead(name, email)
+        messages.success(request, 'thnaks for leaving a review for us')
+        return redirect('home')
+    
+    return render(request, 'mainSite/reviewsPage.html')
+
 
 def contact_us(request):
     if request.method == 'POST':
