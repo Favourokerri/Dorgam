@@ -1,7 +1,7 @@
 function openNav() {
     const navClass = document.getElementsByClassName("sidenav")[0];
     navClass.style.right = "0px"
-    document.getElementById("overlay").style.display = "block";;
+    document.getElementById("overlay").style.display = "block";
     
 }
 
